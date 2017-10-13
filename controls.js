@@ -1,23 +1,30 @@
 import React from 'react'
 import { connect } from 'redux-zero'
 import { hit, stay, reset } from './actions'
+import { Button } from 't63'
 
 const mapStateToProps = ({ game, player, dealer }) => ({ game, player, dealer })
 
 const Controls = connect(mapStateToProps)(props => {
   return (
-    <div>
-      <button disabled={props.game.status !== 'ON'} onClick={hit}>
+    <div className="flex items-center justify-between mt4">
+      <Button
+        className="bg-green bb--green mh3"
+        disabled={props.game.status !== 'ON'}
+        onClick={hit}
+      >
         Hit
-      </button>
-      <button disabled={props.game.status !== 'ON'} onClick={stay}>
+      </Button>
+      <Button
+        className="bg-green bb--green mh3"
+        disabled={props.game.status !== 'ON'}
+        onClick={stay}
+      >
         Stay
-      </button>
-      <button onClick={reset}>
+      </Button>
+      <Button className="bg-green bb--green mh4" onClick={reset}>
         {props.game.status === 'OFF' ? 'Start' : 'Reset'}
-      </button>
-      <span className="pl4">Score: {props.game.status}</span>
-      <span className="pl4">Wins: {props.game.wins}</span>
+      </Button>
     </div>
   )
 })
